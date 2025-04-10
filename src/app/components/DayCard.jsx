@@ -3,13 +3,10 @@ import { MapPin, House, Heart, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SearchBar } from "./SearchBar";
 
-export const DayCard = ({ weather, handleChange, input }) => {
-
+export const DayCard = ({ weather, handleChange, input, countries, setCityName  }) => {
   return (
-    weather && (
+    weather && ( 
       <div className="relative flex w-[567px] justify-center z-10">
-       <div>
-       </div>
         <div className="absolute -top-18 left-0 bg-radial-[at_50%_50%] from-[rgba(255,255,205,0.25)] to-[rgba(255,255,255,0.00)] bg-[#F58C27] h-44 w-44 rounded-full"></div>
         <div className="w-103.5 h-207 z-20 rounded-3xl  overflow-hidden shadow-lg backdrop-blur-md">
           <div className="space-y-12 px-10 py-14 backdrop-blur-lg">
@@ -41,7 +38,7 @@ export const DayCard = ({ weather, handleChange, input }) => {
             </div>
           </div>
         </div>
-        <SearchBar/>
+        <SearchBar handleChange={handleChange} input={input} countries={countries} setCityName={setCityName} />
       </div>
     )
   );
