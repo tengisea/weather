@@ -15,28 +15,26 @@ const Home = () => {
 
   useEffect(() => {
     const weatherKey = process.env.WEATHERAPIKEY;
+    setLoading(true);
     const response = async () => {
       const { data } = await axios(
         `https://api.weatherapi.com/v1/forecast.json?key=${weatherKey}&q=${cityName}`
       );
 
       setWeather(data);
+      setLoading(false);
     };
 
     response();
   }, [cityName]);
 
   useEffect(() => {
-    setLoading(true);
-
     const getCountries = async () => {
       const { data } = await axios(
         "https://countriesnow.space/api/v0.1/countries"
       );
 
       setCountries(data.data);
-
-      setLoading(false);
     };
 
     getCountries();
@@ -44,35 +42,27 @@ const Home = () => {
 
   const handleChange = (event) => {
     setInput(event.target.value);
-
   };
-
-  console.log(weather);
-  console.log(loading);
-  console.log(countries);
 
   return (
     weather && (
       <>
-        {loading ? (
-          <div className="animate-spin w-4 h-4 rounded-full border-black"></div>
-        ) : (
-          <div className="flex min-h-screen">
-            <div className="day relative flex flex-1 items-center justify-center">
-              <DayCard
-                weather={weather}
-                handleChange={handleChange}
-                input={input}
-                loading={loading}
-                countries={countries}
-                setCityName={setCityName}
-              />
-            </div>
-            <div className="night bg-[#0F141E] relative flex flex-1 items-center justify-center">
-              <NightCard weather={weather} loading={loading} />
-            </div>
+        <div className="flex min-h-screen">
+          <div className="day relative flex flex-1 items-center justify-center">
+            <DayCard
+              weather={weather}
+              handleChange={handleChange}
+              input={input}
+              loading={loading}
+              countries={countries}
+              setCityName={setCityName}
+              setInput={setInput}
+            />
           </div>
-        )}
+          <div className="night bg-[#0F141E] relative flex flex-1 items-center justify-center">
+            <NightCard weather={weather} loading={loading} />
+          </div>
+        </div>
         <div className="flex absolute inset-0 z-1 items-center justify-center">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-gray-300 opacity-<0.08> rounded-full h-35 w-35"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border border-gray-300 opacity-<0.08> rounded-full h-85 w-85"></div>

@@ -1,41 +1,71 @@
 import { MapPin, House, Heart, User } from "lucide-react";
 
-export const NightCard = ({ weather }) => {
+export const NightCard = ({ weather, loading }) => {
   return (
     weather && (
-      <div className="relative flex w-[567px] justify-center z-10">
-        <div className="w-103.5 h-207 z-20 rounded-3xl bg-[rgba(17, 24, 39, 0.75)] overflow-hidden shadow-lg backdrop-blur-md ">
-          <div className="space-y-12 px-10 py-14 ">
-            <div className="flex items-center justify-between">
-              <div className="space-y-2">
-                <div className="date text-[#9CA3AF] font-medium">
-                  {weather.location.localtime}
+      <>
+        {loading ? (
+          <div className=" relative flex w-[567px] justify-center z-10  h-[828px] ">
+          <div className="absolute -top-18 left-0 bg-radial-[at_50%_50%] from-[rgba(255,255,205,0.25)] to-[rgba(255,255,255,0.00)] bg-[#F58C27] h-44 w-44 rounded-full"></div>
+          <div className="w-103.5 h-207 z-20 rounded-3xl  overflow-hidden shadow-lg backdrop-blur-md">
+            <div className="space-y-12 px-10 py-14 backdrop-blur-lg">
+              <div className="flex items-center justify-between">
+                <div className="space-y-2 ">
+                  <div className=" animate-pulse bg-gray-200 rounded-full dark:bg-gray-700 h-5"></div>
+                  <div className="city-name h-12 text-5xl font-extrabold  animate-pulse bg-gray-200 rounded-full dark:bg-gray-700 flex"></div>
                 </div>
-                <div className="city-name h-12 text-5xl font-extrabold text-white flex">
-                  {weather.location.name}
-                </div>
+                <MapPin size={32} color="#000000" />
               </div>
-              <MapPin size={32} color="#9CA3AF" />
+              <img className="h-65.5 w-65.5 z-60 " src="/sun.png" alt="" />
             </div>
-            <img className="h-65.5 w-65.5 z-60" src="/moon.png" alt="" />
-          </div>
-          <div className="px-12">
-            <div className="text-transparent bg-clip-text font-extrabold text-[110px] -mt-10 bg-gradient-to-b from-white to-black">
-              {weather.forecast.forecastday[0].day.mintemp_c}°
-            </div>
-            <div className="font-extrabold mb-18 text-[#777CCE] text-2xl h-6">
-              {weather.forecast.forecastday[0].day.condition.text}{" "}
-            </div>
-            <div className="flex items-center justify-between">
-              <House size={32} color="#F9FAFB" />
-              <MapPin size={32} color="#4B5563" />
-              <Heart size={32} color="#4B5563" />
-              <User size={32} color="#4B5563" />
+            <div className="px-12 ">
+              <div className="animate-pulse bg-gray-200 rounded-full dark:bg-gray-300 h-[110px] -mt-10 "></div>
+              <div className="font-extrabold mb-18 mt-10  text-[#777CCE] text-2xl h-6 animate-pulse bg-gray-200 rounded-full dark:bg-gray-300 "></div>
+              <div className="flex items-center justify-between">
+                <House size={32} color="#000000" />
+                <MapPin size={32} color="#D1D5DB" />
+                <Heart size={32} color="#D1D5DB" />
+                <User size={32} color="#D1D5DB" />
+              </div>
             </div>
           </div>
         </div>
-        <div className="absolute top-190 right-5 bg-radial-[at_50%_50%] from-[rgba(255,255,255,0.41)] to-[rgba(255,255,255,0.00)] bg-[#6E72C9] h-32 w-32 rounded-full"></div>
-      </div>
+        ) : (
+          <div className="relative flex w-[567px] justify-center z-10">
+            <div className="w-103.5 h-207 z-20 rounded-3xl bg-[rgba(17, 24, 39, 0.75)] overflow-hidden shadow-lg backdrop-blur-md ">
+              <div className="space-y-12 px-10 py-14 ">
+                <div className="flex items-center justify-between">
+                  <div className="space-y-2">
+                    <div className="date text-[#9CA3AF] font-medium">
+                      {weather.location.localtime}
+                    </div>
+                    <div className="city-name h-12 text-5xl font-extrabold text-white flex">
+                      {weather.location.name}
+                    </div>
+                  </div>
+                  <MapPin size={32} color="#9CA3AF" />
+                </div>
+                <img className="h-65.5 w-65.5 z-60" src="/moon.png" alt="" />
+              </div>
+              <div className="px-12">
+                <div className="text-transparent bg-clip-text font-extrabold text-[110px] -mt-10 bg-gradient-to-b from-white to-black">
+                  {weather.forecast.forecastday[0].day.mintemp_c}°
+                </div>
+                <div className="font-extrabold mb-18 text-[#777CCE] text-2xl h-6">
+                  {weather.forecast.forecastday[0].day.condition.text}{" "}
+                </div>
+                <div className="flex items-center justify-between">
+                  <House size={32} color="#F9FAFB" />
+                  <MapPin size={32} color="#4B5563" />
+                  <Heart size={32} color="#4B5563" />
+                  <User size={32} color="#4B5563" />
+                </div>
+              </div>
+            </div>
+            <div className="absolute top-190 right-5 bg-radial-[at_50%_50%] from-[rgba(255,255,255,0.41)] to-[rgba(255,255,255,0.00)] bg-[#6E72C9] h-32 w-32 rounded-full"></div>
+          </div>
+        )}
+      </>
     )
   );
 };
