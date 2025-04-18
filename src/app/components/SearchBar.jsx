@@ -48,7 +48,7 @@ export const SearchBar = ({
         <input
           type="text"
           placeholder="Search"
-          className=" text-[32px] font-bold"
+          className="w-full py-4 pl-5 pr-6 outline-none text-[32px] font-bold"
           onChange={handleChange}
         />
       </div>
