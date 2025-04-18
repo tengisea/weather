@@ -2,9 +2,9 @@
 
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { DayCard } from "./components/DayCard";
-import { NightCard } from "./components/NightCard";
-import { Logo } from "./components/Logo";
+import { DayCard } from "../components/DayCard";
+import { NightCard } from "../components/NightCard";
+import { Logo } from "../components/Logo";
 
 const Home = () => {
   const [input, setInput] = useState("");
